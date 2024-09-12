@@ -1,0 +1,18 @@
+<h2>Bulk Parcel Processing</h2>
+
+<div id="progressBar" style="width: 100%; background-color: #ddd;">
+  <div id="progress" style="width: 1%; height: 30px; background-color: #4CAF50;"></div>
+</div>
+<p id="progressText">Processing: 0%</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+<script>
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+    socket.on('progress', function(data) {
+        var progressBar = document.getElementById('progress');
+        var progressText = document.getElementById('progressText');
+        progressBar.style.width = data.progress + '%';
+        progressText.innerHTML = 'Processing: ' + data.progress + '%';
+    });
+</script>

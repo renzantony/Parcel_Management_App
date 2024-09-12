@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+    h2 {
+        font-family: Arial, sans-serif;
+        color: #3498db;
+    }
+
+    #parcel-status {
+        font-size: 24px;
+        font-weight: bold;
+        color: #e74c3c;
+    }
+
+    p {
+        font-family: 'Courier New', Courier, monospace;
+        color: #2c3e50;
+    }
+</style>
+
+<h2>Track Parcel in Real-Time</h2>
+<p>Current Parcel Status: <span id="parcel-status">Fetching status...</span></p>
+<div id="status">
+    <p>Tracking status: <span id="parcel-status">Connecting...</span></p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
+<script type="text/javascript">
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    
+    // Request parcel tracking
+    socket.emit('track_request', {});
+
+    // Listen for updates
+    socket.on('track_update', function(data) {
+        document.getElementById('parcel-status').innerHTML = data.status;
+    });
+</script>
+{% endblock %}

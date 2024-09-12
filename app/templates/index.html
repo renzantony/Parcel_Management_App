@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}Home - Parcel Management System{% endblock %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-info text-white">
+    <div class="container">
+        <h1 class="display-4">Welcome to Parcel Management System</h1>
+        <p class="lead">Efficiently manage and track your parcels with real-time updates.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-center mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Manage Parcels</h5>
+                <p class="card-text">Add, update, and track your parcels easily.</p>
+                <a href="/parcels" class="btn btn-primary">View Parcels</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Bulk Processing</h5>
+                <p class="card-text">Handle bulk parcel data with ease using our powerful tools.</p>
+                <a href="/report" class="btn btn-secondary">Generate Report</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Real-Time Updates</h5>
+                <p class="card-text">Receive instant updates on parcel status and processing progress.</p>
+                <button id="track-live-button" class="btn btn-success">Track Live</button>
+                <div id="status-display" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

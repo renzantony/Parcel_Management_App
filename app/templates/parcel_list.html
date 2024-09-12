@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}Parcel List{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Parcel List</h2>
+
+<!-- Form to Add a New Parcel -->
+<form method="POST" action="{{ url_for('parcel_list') }}">
+    <div class="form-group">
+        <label for="parcel_id">Parcel ID</label>
+        <input type="text" id="parcel_id" name="parcel_id" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="sender">Sender</label>
+        <input type="text" id="sender" name="sender" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="recipient">Recipient</label>
+        <input type="text" id="recipient" name="recipient" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="status">Status</label>
+        <!-- Status field updated to be a dropdown list for suggested statuses -->
+        <select id="status" name="status" class="form-control" required>
+            <option value="In Transit">In Transit</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Out for Delivery">Out for Delivery</option>
+            <option value="Pending">Pending</option>
+            <option value="Returned to Sender">Returned to Sender</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Parcel</button>
+</form>
+
+<!-- Table to Display the Parcel List -->
+<h2 class="mt-5">Parcels</h2>
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th>Parcel ID</th>
+            <th>Sender</th>
+            <th>Recipient</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for parcel in parcels %}
+        <tr>
+            <td>{{ parcel.parcel_id }}</td>
+            <td>{{ parcel.sender }}</td>
+            <td>{{ parcel.recipient }}</td>
+            <td>{{ parcel.status }}</td>
+            <td>{{ parcel.date }}</td>
+            <td>
+                <a href="{{ url_for('update_parcel', id=parcel.id) }}" class="btn btn-warning btn-sm">Update</a> |
+                <a href="{{ url_for('track_parcel', id=parcel.id) }}" class="btn btn-info btn-sm">Track</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
