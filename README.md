@@ -5,9 +5,12 @@
 1. Clone the repository.
   ``` git clone <repository name>```
 3. Create a virtual environment and activate it.
+   Create the environment: 
    ```python -m venv env```
+   
    Activate the environment:
-   `` env\Scripts\activate.bat ```
+   
+   ``` env\Scripts\activate.bat ```
    
 5. Install the required packages:
     ```powershell
